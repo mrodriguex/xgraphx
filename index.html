@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>3D Vector Calc</title>
+    <title>3D Function Plotter</title>
     <link rel="icon" href="data:,">
 
     <!-- IMPORT MAP (fixes "three" resolution) -->
@@ -23,17 +23,57 @@
 <body>
     <canvas id="scene"></canvas>
     
-    <button id="toggleControls" class="toggle-btn" aria-label="Toggle Controls">
-        <span class="toggle-icon"></span>
+    <!-- Help and Reset buttons - always visible -->
+    <div class="action-buttons">
+        <button id="helpBtn" class="icon-btn" title="Help & Shortcuts">?</button>
+        <button id="resetBtn" class="icon-btn" title="Reset View">⟲</button>
+    </div>
+    
+    <!-- Burger menu toggle -->
+    <button id="toggleControls" class="burger-btn" aria-label="Toggle Controls">
+        <span class="burger-icon"></span>
     </button>
     
-    <div id="controls">
-        <h3>3D Function Plotter</h3>
+    <!-- Controls panel -->
+    <div id="controls" class="controls-panel">
+        <div class="header">
+            <h3>3D Function Plotter</h3>
+        </div>
         
         <div class="control-group">
-            <label for="functionInput">Function f(x,y):</label>
-            <input type="text" id="functionInput" value="x*x + y*y" placeholder="e.g., x*x + y*y" />
-            <button id="updateButton">Plot</button>
+            <div class="input-group">
+                <input type="text" id="functionInput" value="x*x + y*y" placeholder="e.g., x*x + y*y, sin(x)*cos(y)" />
+                <div class="input-buttons">
+                    <button id="saveFunctionBtn" class="secondary-btn" title="Save current function">
+                        <span class="btn-icon">💾</span>
+                        Save
+                    </button>
+                    <button id="updateButton" class="primary-btn" title="Plot the function">
+                        <span class="btn-icon">📊</span>
+                        Plot
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h4>Function Library</h4>
+            <div class="function-list-group">
+                <select id="functionList" class="function-list">
+                    <option value="">Select a saved function...</option>
+                    <!-- Functions will be populated here -->
+                </select>
+                <div class="function-buttons">
+                    <button id="newFunctionBtn" class="secondary-btn" title="Create new function">
+                        <span class="btn-icon">➕</span>
+                        New
+                    </button>
+                    <button id="deleteFunctionBtn" class="danger-btn" title="Delete selected function">
+                        <span class="btn-icon">🗑️</span>
+                        Delete
+                    </button>
+                </div>
+            </div>
         </div>
         
         <div class="control-group">
@@ -63,10 +103,47 @@
                 </label>
                 <label class="checkbox-label">
                     <input type="checkbox" id="showNumbers" checked />
-                    <span>Show Axes Numbers</span>
+                    <span>Show Nums</span>
                 </label>
             </div>
         </div>
+    </div>
+    
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Help & Shortcuts</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h4>Function Syntax</h4>
+                <p>Use JavaScript math functions:</p>
+                <ul>
+                    <li><code>Math.sin(x)</code>, <code>Math.cos(x)</code>, <code>Math.tan(x)</code></li>
+                    <li><code>Math.exp(x)</code>, <code>Math.log(x)</code>, <code>Math.sqrt(x)</code></li>
+                    <li><code>Math.pow(x, y)</code>, <code>Math.abs(x)</code></li>
+                    <li><code>Math.PI</code>, <code>Math.E</code></li>
+                </ul>
+                
+                <h4>Keyboard Shortcuts</h4>
+                <ul>
+                    <li><kbd>Enter</kbd> in function input: Plot function</li>
+                    <li><kbd>Ctrl</kbd> + <kbd>S</kbd>: Save function</li>
+                    <li><kbd>Ctrl</kbd> + <kbd>R</kbd>: Reset view</li>
+                    <li><kbd>?</kbd>: Show this help</li>
+                </ul>
+                
+                <h4>3D Navigation</h4>
+                <p>Click and drag to rotate • Scroll to zoom • Right-click drag to pan</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="spinner"></div>
+        <span>Rendering...</span>
     </div>
     
     <div id="popup" class="popup">
