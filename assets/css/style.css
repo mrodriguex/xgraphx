@@ -1,0 +1,250 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+}
+
+#controls {
+  position: absolute;
+  top: 10px;
+  right: 60px; /* Leave space for toggle button */
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 280px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+#controls h3 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 18px;
+  text-align: center;
+}
+
+#controls h4 {
+  margin: 15px 0 10px 0;
+  color: #34495e;
+  font-size: 14px;
+  border-bottom: 1px solid #ecf0f1;
+  padding-bottom: 5px;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+#functionInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+#updateButton {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+#updateButton:hover {
+  background: #2980b9;
+}
+
+.range-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.range-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.range-group label {
+  min-width: 60px;
+  font-weight: normal;
+}
+
+.range-group input {
+  width: 70px;
+  padding: 6px;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.range-group span {
+  color: #7f8c8d;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.checkbox-label span {
+  color: #555;
+}
+
+/* Toggle button */
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+}
+
+.toggle-btn:hover {
+  background: #2980b9;
+}
+
+#controls.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  #controls {
+    right: 10px;
+    top: 60px;
+    min-width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+  }
+  
+  .toggle-btn {
+    right: 10px;
+  }
+  
+  .range-inputs {
+    gap: 5px;
+  }
+  
+  .range-group {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .range-group input {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  #controls {
+    padding: 15px;
+    font-size: 14px;
+  }
+  
+  #controls h3 {
+    font-size: 16px;
+  }
+  
+  .control-group {
+    margin-bottom: 15px;
+  }
+  
+  .range-group label {
+    min-width: 50px;
+    font-size: 12px;
+  }
+  
+  .range-group input {
+    width: 50px;
+    padding: 4px;
+  }
+}
+
+/* Popup styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+.popup-content {
+  background: #e74c3c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+  font-size: 14px;
+}
+
+.popup-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s;
+}
+
+.popup-close:hover {
+  color: white;
+}
+
+#popup-message {
+  margin: 0;
+  padding-right: 20px; /* Space for close button */
+}
+
+@keyframes slideDown {
+  from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
