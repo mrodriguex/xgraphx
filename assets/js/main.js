@@ -237,7 +237,10 @@ document.getElementById('updateButton').addEventListener('click', () => {
 /* Visibility controls */
 document.getElementById('toggleControls').addEventListener('click', () => {
   const controls = document.getElementById('controls');
+  const toggleBtn = document.getElementById('toggleControls');
+  
   controls.classList.toggle('hidden');
+  toggleBtn.classList.toggle('active');
 });
 
 document.getElementById('showGrid').addEventListener('change', (e) => {

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>3D Vector Calc</title>
     <link rel="icon" href="data:,">
 
@@ -22,7 +23,9 @@
 <body>
     <canvas id="scene"></canvas>
     
-    <button id="toggleControls" class="toggle-btn">⚙️</button>
+    <button id="toggleControls" class="toggle-btn" aria-label="Toggle Controls">
+        <span class="toggle-icon"></span>
+    </button>
     
     <div id="controls">
         <h3>3D Function Plotter</h3>

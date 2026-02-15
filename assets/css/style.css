@@ -131,18 +131,77 @@ canvas {
   background: #3498db;
   color: white;
   border: none;
-  border-radius: 50%;
+  border-radius: 6px;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  font-size: 18px;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .toggle-btn:hover {
   background: #2980b9;
+  transform: scale(1.05);
+}
+
+.toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.toggle-icon {
+  display: inline-block;
+  width: 20px;
+  height: 16px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.3s ease-in-out;
+}
+
+.toggle-icon::before,
+.toggle-icon::after,
+.toggle-icon span {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: white;
+  border-radius: 1px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.toggle-icon::before {
+  top: 0px;
+}
+
+.toggle-icon span {
+  top: 7px;
+}
+
+.toggle-icon::after {
+  top: 14px;
+}
+
+.toggle-btn.active .toggle-icon::before {
+  top: 7px;
+  transform: rotate(135deg);
+}
+
+.toggle-btn.active .toggle-icon::after {
+  top: 7px;
+  transform: rotate(-135deg);
+}
+
+.toggle-btn.active .toggle-icon span {
+  opacity: 0;
+  left: -60px;
 }
 
 #controls.hidden {
@@ -153,52 +212,152 @@ canvas {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   #controls {
-    right: 10px;
-    top: 60px;
-    min-width: calc(100vw - 20px);
-    max-width: calc(100vw - 20px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 40px);
+    max-width: 400px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 15px;
+    z-index: 100;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
   
   .toggle-btn {
+    position: fixed;
+    top: 10px;
     right: 10px;
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+    z-index: 101;
   }
   
   .range-inputs {
-    gap: 5px;
+    gap: 8px;
   }
   
   .range-group {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
   }
   
   .range-group input {
-    width: 60px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .control-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  #functionInput {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  #updateButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 8px;
+    box-sizing: border-box;
   }
 }
 
 @media (max-width: 480px) {
   #controls {
-    padding: 15px;
-    font-size: 14px;
+    padding: 12px;
+    border-radius: 8px;
   }
   
   #controls h3 {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  #controls h4 {
+    font-size: 12px;
+    margin: 12px 0 8px 0;
   }
   
   .control-group {
     margin-bottom: 15px;
   }
   
-  .range-group label {
-    min-width: 50px;
-    font-size: 12px;
+  .checkboxes {
+    gap: 10px;
   }
   
-  .range-group input {
-    width: 50px;
-    padding: 4px;
+  .checkbox-label {
+    font-size: 14px;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+}
+
+/* Touch-friendly improvements for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .toggle-btn {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .toggle-btn .toggle-icon {
+    width: 24px;
+    height: 18px;
+  }
+  
+  .toggle-btn .toggle-icon span {
+    top: 8px;
+  }
+  
+  .toggle-btn .toggle-icon::after {
+    top: 16px;
+  }
+  
+  #updateButton {
+    min-height: 48px;
+  }
+  
+  .range-group input,
+  #functionInput {
+    min-height: 44px;
+  }
+  
+  .checkbox-label {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+  }
+}
+
+/* Popup mobile adjustments */
+@media (max-width: 480px) {
+  .popup-content {
+    width: 90vw;
+    max-width: none;
+    padding: 15px 20px;
+    font-size: 15px;
+  }
+  
+  .popup-close {
+    top: 8px;
+    right: 12px;
+    font-size: 20px;
   }
 }
 

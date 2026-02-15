@@ -4,6 +4,19 @@ A interactive 3D mathematical function visualizer built with Three.js, allowing 
 
 ![3D Function Plotter](https://via.placeholder.com/800x400/3498db/ffffff?text=3D+Function+Plotter)
 
+## Repository
+
+- **Repository**: [GitHub Repository](https://github.com/username/xgraphix)
+- **Issues**: [Report Issues](https://github.com/username/xgraphix/issues)
+- **Documentation**: [Wiki](https://github.com/username/xgraphix/wiki)
+
+## Maintainer
+
+- **Name**: Manuel
+- **Email**: manuel@example.com
+- **GitHub**: [@manueldev](https://github.com/manueldev)
+- **LinkedIn**: [Manuel Developer](https://linkedin.com/in/manueldev)
+
 ## Features
 
 - **Real-time 3D Visualization**: Plot mathematical functions in 3D space with smooth wireframe rendering
@@ -14,7 +27,7 @@ A interactive 3D mathematical function visualizer built with Three.js, allowing 
   - Coordinate axes with labeled tick marks
   - Adjustable grid overlay
   - Negative axis extensions
-- **Responsive Design**: Optimized for desktop and mobile devices
+- **Responsive Design**: Optimized for desktop and mobile devices with touch controls
 - **User-friendly Interface**: Clean controls panel with show/hide toggle
 - **Error Handling**: Intelligent validation with user-friendly error messages
 
@@ -83,9 +96,15 @@ A interactive 3D mathematical function visualizer built with Three.js, allowing 
 
 ### Camera Controls
 
-- **Rotate**: Left-click and drag
-- **Zoom**: Mouse wheel or right-click drag
-- **Pan**: Middle-click drag or Shift+left-click
+- **Desktop**:
+  - **Rotate**: Left-click and drag
+  - **Zoom**: Mouse wheel or right-click drag
+  - **Pan**: Middle-click drag or Shift+left-click
+
+- **Mobile/Touch**:
+  - **Rotate**: Single finger drag
+  - **Zoom**: Pinch gesture
+  - **Pan**: Two-finger drag
 
 ## Project Structure
 
@@ -109,6 +128,7 @@ xgraphix/
 - Firefox 75+
 - Safari 13+
 - Edge 80+
+- Mobile browsers (iOS Safari, Chrome Mobile) with WebGL support
 
 ## Development
 
@@ -173,7 +193,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *Interactive 3D surface plotting with grid and axes*
 
 ### Mobile Responsive
-*Optimized controls for mobile devices*
+*Touch-optimized controls for mobile devices with responsive layout*
 
 ---
 
